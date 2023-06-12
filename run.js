@@ -167,8 +167,9 @@ async function processSlot() {
   slotLock = false
 }
 
-//const GENESIS = 1606824023
-const GENESIS = 1616508000 // Goerli
+const GENESIS = 1606824023 // mainnet
+//const GENESIS = 1606824000
+//const GENESIS = 1616508000 // Goerli
 
 const now = Math.trunc(Date.now() / 1000)
 let seconds = (now - GENESIS)
@@ -183,7 +184,7 @@ async function everySecond() {
   if (seconds % 12 === 11) slot += 1
   //console.log(`Interval processing called at ${seconds}`)
   if (seconds % 12 === delay) {
-    console.log(`Target delay hit at ${seconds}`)
+    console.log(`Target delay hit at ${seconds}, ${slot}`)
     await processSlot()
   }
   await processSubmitted()
